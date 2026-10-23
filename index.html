@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#176b57">
+  <meta name="description" content="Encontre hotéis, pousadas e casas de temporada para sua próxima viagem.">
+  <title>Estadia — encontre seu próximo lugar favorito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#" aria-label="Estadia, página inicial">
+        <span class="brand-mark" aria-hidden="true">e</span><span>estadia<span class="brand-dot">.</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#hospedagens">Hospedagens</a>
+        <a href="#beneficios">Por que reservar conosco?</a>
+        <a href="#sobre">Sobre</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="host-link" href="#anuncie">Anuncie seu espaço</a>
+        <button class="icon-button menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+        <a class="profile-button" href="#conta" aria-label="Área do viajante">♙</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero">
+      <div class="hero-shade"></div>
+      <div class="container hero-inner">
+        <span class="eyebrow hero-eyebrow">SUA PRÓXIMA VIAGEM COMEÇA AQUI</span>
+        <h1>Encontre um lugar<br><em>para chamar de seu.</em></h1>
+        <p class="hero-copy">Estadias especiais, anfitriões acolhedores e novas histórias para viver.</p>
+
+        <form class="search-panel" id="searchForm">
+          <label class="search-field">
+            <span class="field-icon" aria-hidden="true">⌖</span>
+            <span class="field-content"><span class="field-label">Destino</span>
+              <input id="destination" name="destination" type="search" placeholder="Cidade ou região" autocomplete="off">
+            </span>
+          </label>
+          <label class="search-field">
+            <span class="field-icon" aria-hidden="true">▦</span>
+            <span class="field-content"><span class="field-label">Check-in</span>
+              <input id="checkin" name="checkin" type="date">
+            </span>
+          </label>
+          <label class="search-field">
+            <span class="field-icon" aria-hidden="true">▦</span>
+            <span class="field-content"><span class="field-label">Check-out</span>
+              <input id="checkout" name="checkout" type="date">
+            </span>
+          </label>
+          <label class="search-field guests-field">
+            <span class="field-icon" aria-hidden="true">♙</span>
+            <span class="field-content"><span class="field-label">Hóspedes</span>
+              <select id="guests" name="guests">
+                <option value="1">1 hóspede</option>
+                <option value="2" selected>2 hóspedes</option>
+                <option value="3">3 hóspedes</option>
+                <option value="4">4 hóspedes</option>
+                <option value="5">5+ hóspedes</option>
+              </select>
+            </span>
+          </label>
+          <button class="search-button" type="submit"><span aria-hidden="true">⌕</span> Buscar</button>
+        </form>
+        <p class="hero-footnote"><span aria-hidden="true">✦</span> Lugares selecionados para viagens inesquecíveis</p>
+      </div>
+    </section>
+
+    <section class="container category-section" aria-labelledby="categoryTitle">
+      <div class="section-heading compact-heading">
+        <div><span class="eyebrow">DO SEU JEITO</span><h2 id="categoryTitle">Que tipo de estadia combina com você?</h2></div>
+      </div>
+      <div class="category-list" id="categoryList">
+        <button class="category-chip active" data-category="Todos" type="button"><span>✧</span> Todas</button>
+        <button class="category-chip" data-category="Praia" type="button"><span>☼</span> Praia</button>
+        <button class="category-chip" data-category="Natureza" type="button"><span>♧</span> Natureza</button>
+        <button class="category-chip" data-category="Piscina" type="button"><span>≋</span> Piscina</button>
+        <button class="category-chip" data-category="Romântico" type="button"><span>♡</span> Romântico</button>
+        <button class="category-chip" data-category="Urbano" type="button"><span>⌂</span> Urbano</button>
+      </div>
+    </section>
+
+    <section class="container listings-section" id="hospedagens">
+      <div class="section-heading listings-heading">
+        <div><span class="eyebrow">SELEÇÃO ESTADIA</span><h2>Hospedagens em destaque</h2><p class="section-subtitle" id="resultsCount">Lugares que vale a pena conhecer.</p></div>
+        <div class="listing-tools">
+          <label class="sort-label" for="sortSelect">Ordenar por</label>
+          <select id="sortSelect" class="sort-select">
+            <option value="recommended">Recomendados</option>
+            <option value="price-asc">Menor preço</option>
+            <option value="price-desc">Maior preço</option>
+            <option value="rating">Melhor avaliação</option>
+          </select>
+          <button class="outline-button" id="filtersToggle" type="button" aria-expanded="false">☷ Filtros</button>
+        </div>
+      </div>
+
+      <div class="filter-panel" id="filterPanel" hidden>
+        <label>Preço máximo por diária (R$)
+          <input id="maxPrice" type="number" min="0" step="25" placeholder="Ex.: 500">
+        </label>
+        <label>Tipo de hospedagem
+          <select id="typeFilter">
+            <option value="Todos">Todos os tipos</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Pousada">Pousada</option>
+            <option value="Casa de temporada">Casa de temporada</option>
+            <option value="Chalé">Chalé</option>
+          </select>
+        </label>
+        <label class="checkbox-filter"><input id="poolFilter" type="checkbox"> Somente com piscina</label>
+        <button class="text-button" id="clearFilters" type="button">Limpar filtros</button>
+      </div>
+
+      <div class="listing-grid" id="listingGrid" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <span aria-hidden="true">⌕</span><h3>Nenhuma hospedagem encontrada</h3>
+        <p>Tente mudar o destino ou remover alguns filtros.</p>
+        <button class="primary-button" id="resetSearch" type="button">Ver todas as hospedagens</button>
+      </div>
+      <div class="load-more-wrap"><button class="outline-button load-more" id="loadMore" type="button">Explorar hospedagens <span>→</span></button></div>
+    </section>
+
+    <section class="benefits-section" id="beneficios">
+      <div class="container">
+        <div class="section-heading centered"><span class="eyebrow">VIAJE COM TRANQUILIDADE</span><h2>Mais que uma hospedagem.<br>Uma boa experiência.</h2></div>
+        <div class="benefit-grid">
+          <article class="benefit"><span class="benefit-icon">♡</span><h3>Lugares selecionados</h3><p>Uma seleção demonstrativa de espaços com personalidade e conforto.</p></article>
+          <article class="benefit"><span class="benefit-icon">♧</span><h3>Para cada estilo</h3><p>Da pousada charmosa ao refúgio na natureza, encontre seu ritmo.</p></article>
+          <article class="benefit"><span class="benefit-icon">☼</span><h3>Viagem sem complicação</h3><p>Pesquise por destino, compare preços e encontre sua próxima estadia.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="host-cta" id="anuncie">
+      <div class="container host-cta-inner">
+        <div><span class="eyebrow">VOCÊ TEM UM ESPAÇO ESPECIAL?</span><h2>Transforme sua hospedagem<br>em parte da próxima viagem.</h2><p>Apresente seu imóvel para viajantes que procuram novas experiências.</p></div>
+        <a class="light-button" href="mailto:contato@exemplo.com?subject=Quero%20anunciar%20minha%20hospedagem">Quero anunciar <span>→</span></a>
+      </div>
+    </section>
+
+    <section class="container about-section" id="sobre">
+      <div><span class="eyebrow">SOBRE A ESTADIA</span><h2>Viajar também é<br>encontrar seu lugar.</h2></div>
+      <p>A Estadia é um template demonstrativo para catálogo de hotéis, pousadas e imóveis de temporada. Personalize os textos, imagens e dados para criar sua própria plataforma de hospedagem.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <a class="brand footer-brand" href="#"><span class="brand-mark">e</span><span>estadia<span class="brand-dot">.</span></span></a>
+      <p>Encontre seu próximo lugar favorito.</p>
+      <nav aria-label="Links do rodapé"><a href="#hospedagens">Hospedagens</a><a href="#beneficios">Benefícios</a><a href="mailto:contato@exemplo.com">Contato</a></nav>
+    </div>
+    <div class="container footer-bottom"><span>© <span id="year"></span> Estadia. Template demonstrativo.</span><span>Feito para boas viagens ♡</span></div>
+  </footer>
+
+  <dialog class="stay-dialog" id="stayDialog" aria-labelledby="dialogTitle">
+    <button class="dialog-close" id="dialogClose" type="button" aria-label="Fechar detalhes">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
